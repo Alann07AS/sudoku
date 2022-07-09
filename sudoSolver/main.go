@@ -16,6 +16,7 @@ func main() {
 	}
 	var grilleTable = sudoFonction.PutInIntTable(argumentTable)
 	displayTest(grilleTable)
+	fmt.Println(sudoFonction.IsInSquare(8, 8, 1, grilleTable))
 }
 
 func displayTest(grilleTable [9][9]int) {
