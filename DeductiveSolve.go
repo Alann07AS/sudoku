@@ -16,7 +16,7 @@ func DeductiveSolve(table []int) []int {
 			}
 		}
 	}
-	
+
 	last := table[0]
 	for i := 0; i <= len(table)-2; i++ {
 		if last == table[i+1] {

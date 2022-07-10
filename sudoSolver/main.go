@@ -11,7 +11,6 @@ func main() {
 	fmt.Println()
 	isCorectArg, argLost, caseLost := sudoFonction.IsCorectArgument(argumentTable)
 	if !isCorectArg {
-		fmt.Println()
 		fmt.Println("They are argument mistake:")
 		fmt.Println()
 		if argLost != 0 {
@@ -41,12 +40,10 @@ func main() {
 		for indexY := 0; indexY <= 8; indexY++ {
 			var allPossibleValueInLigne []int
 			for indexX := 0; indexX <= 8; indexX++ {
-				// deductValue := sudoFonction.DeductiveSolve(allPossibleValueInLigne)
 				if grilleTable[indexY][indexX] == 0 {
 					var possibleValue []int
 					for value := 1; value <= 9; value++ {
 						if isPossible(indexX, indexY, value, grilleTable) {
-							// fmt.Println("is POssible")
 							possibleValue = append(possibleValue, value)
 							allPossibleValueInLigne = append(allPossibleValueInLigne, value)
 						}
@@ -54,7 +51,6 @@ func main() {
 					if len(possibleValue) == 1 {
 						grilleTable[indexY][indexX] = possibleValue[0]
 					}
-
 				}
 			}
 			tableDeduct := sudoFonction.DeductiveSolve(allPossibleValueInLigne)
