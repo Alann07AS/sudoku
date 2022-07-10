@@ -25,16 +25,3 @@ func isNbr(char rune) bool {
 		return false
 	}
 }
-
-func doubleDectected(intTable [9][9]int) bool {
-	for i := 0; i <= 8; i++ {
-		for i2 := 0; i2 <= 8; i2++ {
-			if intTable[i][i2] != 0 {
-				if IsInSquare(i, i2, intTable[i][i2], intTable) {
-
-				}
-			}
-		}
-	}
-	return true
-}
