@@ -8,21 +8,31 @@ import (
 
 func main() {
 	argumentTable := os.Args
-	if !sudoFonction.IsCorectArgument(argumentTable) {
-		fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		fmt.Println("!!!!!!!BOARD NOT VALID!!!!!!!")
-		fmt.Println("!!!!!!!ARGURMENT NUMBER!!!!!!")
-		fmt.Println("!!!!!!!!!!!!FALSE!!!!!!!!!!!!")
-		fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+	isCorectArg, argLost, caseLost := sudoFonction.IsCorectArgument(argumentTable)
+	if !isCorectArg {
+		fmt.Println()
+		fmt.Println("They are argument mistake:")
+		fmt.Println()
+		if argLost != 0 {
+			fmt.Println("They are", argLost, "arguments")
+		}
+		if caseLost != 0 {
+			fmt.Println("They are", caseLost, "case of dif")
+		}
+		fmt.Println()
 		return
 	}
 	var grilleTable = sudoFonction.PutInIntTable(argumentTable)
-	if sudoFonction.DoubleDectected(grilleTable) {
-		fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		fmt.Println("!!!!!!!BOARD NOT VALID!!!!!!!")
-		fmt.Println("!!!!!!!!DOUBLE NUMBER!!!!!!!!")
-		fmt.Println("!!!!!!!!!!!DETECTED!!!!!!!!!!!")
-		fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	isDoublon, dL, dR, dS := sudoFonction.DoubleDectected(grilleTable)
+	if isDoublon {
+		fmt.Println()
+		fmt.Println("Errors there are", dL+dR+dS, "double :")
+		fmt.Println()
+		fmt.Println("-One or more double in", dL, "ligne.")
+		fmt.Println("-One or more double in", dR, "row.")
+		fmt.Println("-One or more double in", dS, "square.")
+		fmt.Println()
 		return
 	}
 
@@ -42,11 +52,9 @@ func main() {
 							allPossibleValueInLigne = append(allPossibleValueInLigne, value)
 						}
 					}
-					fmt.Println("Position", indexX, " ", indexY, "possibleValue", possibleValue)
 					if len(possibleValue) == 1 {
 						grilleTable[indexY][indexX] = possibleValue[0]
 					}
-					fmt.Println(allPossibleValueInLigne)
 
 				}
 				// if len(sudoFonction.DeductiveSolve(allPossibleValueInLigne)) != 0 {
@@ -66,7 +74,6 @@ func main() {
 					}
 				}
 			}
-			fmt.Println(sudoFonction.DeductiveSolve(allPossibleValueInLigne))
 		}
 		i++
 	}

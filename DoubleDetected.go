@@ -1,15 +1,18 @@
 package sudoFonction
 
-import "fmt"
+func DoubleDectected(intTable [9][9]int) (bool, int, int, int) {
+	doublonLigne := 0
+	doublonRow := 0
+	doublonSquare := 0
+	isDoublon := false
 
-func DoubleDectected(intTable [9][9]int) bool {
 	//double dans les lignes
 	for ligne := 0; ligne <= 8; ligne++ {
 		table := sortLigne(ligne, intTable)
-		fmt.Println("ligne ", table)
 		for i := 0; i <= len(table)-2; i++ {
 			if table[i] == table[i+1] {
-				return true
+				isDoublon = true
+				doublonLigne++
 			}
 		}
 	}
@@ -17,10 +20,10 @@ func DoubleDectected(intTable [9][9]int) bool {
 	//double colone
 	for ligne := 0; ligne <= 8; ligne++ {
 		table := sortRow(ligne, intTable)
-		fmt.Println("row ", table)
 		for i := 0; i <= len(table)-2; i++ {
 			if table[i] == table[i+1] {
-				return true
+				isDoublon = true
+				doublonRow++
 			}
 		}
 	}
@@ -28,14 +31,14 @@ func DoubleDectected(intTable [9][9]int) bool {
 	//double dans caré
 	for ligne := 0; ligne <= 8; ligne++ {
 		table := sortSquare(ligne, intTable)
-		fmt.Println("ligne ", table)
 		for i := 0; i <= len(table)-2; i++ {
 			if table[i] == table[i+1] {
-				return true
+				isDoublon = true
+				doublonSquare++
 			}
 		}
 	}
-	return false
+	return isDoublon, doublonLigne, doublonRow, doublonSquare
 }
 
 func isNbrInt(nb int) bool {
@@ -50,7 +53,6 @@ func sortLigne(nbL int, intTable [9][9]int) []int {
 	var table []int
 	for indexX := 0; indexX <= 8; indexX++ {
 		if isNbrInt(intTable[nbL][indexX]) {
-			fmt.Print(indexX, "__", nbL, "   ")
 			table = append(table, intTable[nbL][indexX])
 		}
 	}
