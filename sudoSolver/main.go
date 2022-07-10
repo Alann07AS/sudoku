@@ -37,8 +37,7 @@ func main() {
 	}
 
 	i := 0
-	for i != 50 {
-		fmt.Println("____________________________________________________________________")
+	for i != 100 {
 		for indexY := 0; indexY <= 8; indexY++ {
 			var allPossibleValueInLigne []int
 			for indexX := 0; indexX <= 8; indexX++ {
@@ -57,10 +56,6 @@ func main() {
 					}
 
 				}
-				// if len(sudoFonction.DeductiveSolve(allPossibleValueInLigne)) != 0 {
-				// 	indexX = 0
-				// }
-
 			}
 			tableDeduct := sudoFonction.DeductiveSolve(allPossibleValueInLigne)
 			if len(tableDeduct) != 0 {
@@ -77,15 +72,22 @@ func main() {
 		}
 		i++
 	}
-	displayTest(grilleTable)
+	if sudoFonction.IsSolve(grilleTable) {
+		fmt.Println("Is solve :")
+		fmt.Println()
+		sudoFonction.DisplaySolveSudo(grilleTable)
+	} else {
+		fmt.Println("No solve found !!!")
+		fmt.Println()
+	}
 }
 
-func displayTest(grilleTable [9][9]int) {
-	for _, row := range grilleTable {
-		fmt.Println(row)
-	}
-	fmt.Println()
-}
+// func displayTest(grilleTable [9][9]int) {
+// 	for _, row := range grilleTable {
+// 		fmt.Println(row)
+// 	}
+// 	fmt.Println()
+// }
 
 func isPossible(x, y, value int, table [9][9]int) bool {
 	if sudoFonction.IsInHorizontal(y, value, table) ||
